@@ -122,23 +122,43 @@ Having setup your filezilla upload all the files inside EC2
   
 now come back to command line:(I hope aws cli is configured, credentials are set, ec2 is running in command line as well in filezilla)   
 ```  
-cd EC2  
-which python  							#returns the current version of the python  
-sudo yum install python34 				#install python3.4 inside ec2  
-virtualenv -p python3.4 myenv			#make a virtual environment  
-source myenv/bin/activated				#activate the virtual environment  
-pip install upgrade pip  
-pip install -r requirement.txt 			#install the requirements  
-pwd										#to get the path of the current working directory  
+cd EC2
+
+#returns the current version of the python
+which python
+
+#install python3.4 inside ec2  						  
+sudo yum install python34
+
+#make a virtual environment   			
+virtualenv -p python3.4 myenv
+
+#activate the virtual environment  		
+source myenv/bin/activate	
+
+pip install upgrade pip
+
+#install the requirements  
+pip install -r requirement.txt		
+
+#to get the path of the current working directory  
+pwd									
 ```  
   
 having done all the requirement installed now lets set the cron job  
   
 ```  
-crontab -l 								#to check if any cronjob is set or not  
-nano task.cron 							# this step is optional if you see the path is different then set the path accordingly and update the task.cron  
-crontab task.cron 						#add task to cron  
-crontab -l 								#you can see the task is added to cron  
+#to check if any cronjob is set or not  
+crontab -l
+
+# this step is optional if you see the path is different then set the path accordingly and update the task.cron   								
+nano task.cron
+
+#add task to cron   							
+crontab task.cron
+
+#you can see the task is added to cron   						
+crontab -l 								
 ```  
   
 At last set whenever ec2 loads the virtual environment also loads  
