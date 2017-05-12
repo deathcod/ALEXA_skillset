@@ -79,9 +79,9 @@ sudo apt-get dist-upgrade
 managing ec2 inside filezilla  
 http://stackoverflow.com/questions/16744863/connect-to-amazon-ec2-file-directory-using-filezilla-and-sftp  
   
-Having setup your filezilla upload all the files inside EC2  
-1)making a directory under ec2-user in ec2 instance and upload the EC2 folder  
-2)upload the requirements.txt inside this folder in ec2  
+Having setup your filezilla upload all the files inside EC2 and database  
+1) making a directory under ec2-user in ec2 instance and upload the EC2 folder and also the database folder   
+2) upload the requirements.txt inside this folder in ec2  
   
 now come back to command line:(I hope aws cli is configured, credentials are set, ec2 is running in command line as well in filezilla)   
 ```  
