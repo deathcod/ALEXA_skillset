@@ -41,7 +41,7 @@ get the dynamodb file for your local drive for local testing
 To start dynamodb use : java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar   
   
 set up virtual environment : virtualenv --python=/usr/bin/python3 myenv  
-upgrade pip : pip install --upgrade   
+upgrade pip : pip install --upgrade pip  
 install all the requirements : pip install -r requirements.txt  
   
 connect to EC2  
