@@ -1,41 +1,4 @@
-## Testing  
-  
-Fixtures are set of objects that are the base line for testing.  
-  
-## Problems faced  
-  
-1) When I was trying to import files from other directories the import was not working than after searching I got to understand the concept of sys path. below is the code which is simple and serves the purpose.  
-  
-```python3  
-import os, sys  
-  
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))  
-sys.path.append(os.path.dirname(CURRENT_DIR))  
-```  
-  
-2) I am very new to software testing so it is very difficult to get to know how to test the database.  
-  
-3) I faced error that said it cannnot find module etree of lxml. On search on stackoverflow I came to the conclusion that to run lxml I had to download some dependencies, but the problem is in the local system it is managable but how to manage in the aws lambda that was difficult.   
-  
-So to rectify I included LD_LIBRARY_PATH and set the path of the the library with lib file required by lxml.  But still it was showing errors of permisision denied so I used chmod 755 to give excutable access to the files and now it was working fine. But there was still a problem though everything was working fine in the local system it was not executing the in the lambda funciton as to do so the virtual environment was needed to be activated, but the problem how to do that and thus it was difficult to proceed ahead,  
-  
-So then I realised that the problem is the setup. So I am building a serverless model when it should not be like instead it should be a complete server model so now I have shifted my project to EC2 and triggering the dynamodb and set the cron job for automation. And create the serverless model for the lambda function ALEXA is calling.  
-  
-4) was facing problem to create xpaths when we require to select two div positions, came to realise it can be done by div[position=3 or position=4]  
-  
-  
-  
-## Why to use shebang #!/usr/bin/env python  
-  
-See this is different, env is to point to a virtual environment.   
-A reason not to use /usr/bin/env is that then the name of the process is not the name of the script. Having the script name as the process name is helpful in looking at process listings and when it is behaving badly and you need to kill it.  
-  
-  
-## use of requirements.txt  
-  
-To build the requirements.txt you have use the following commmand. ``` pip freeze > requirements.txt``` This helps to keep in track of all the packages installed.  
-  
-## installation  
+# INSTALLATION
   
 ### Below is the guidelines to setup IAM user   
 http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html   
@@ -165,3 +128,43 @@ At last set whenever ec2 loads the virtual environment also loads
 ```  
 echo "source /home/ec2-user/EC2/myenv/bin/activate" >> /home/ec2-user/.bashrc  
 ```
+
+____
+
+
+# PROBLEM FACED  
+  
+1) When I was trying to import files from other directories the import was not working than after searching I got to understand the concept of sys path. below is the code which is simple and serves the purpose.  
+  
+```python3  
+import os, sys  
+  
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))  
+sys.path.append(os.path.dirname(CURRENT_DIR))  
+```  
+  
+2) I am very new to software testing so it is very difficult to get to know how to test the database.  
+  
+3) I faced error that said it cannnot find module etree of lxml. On search on stackoverflow I came to the conclusion that to run lxml I had to download some dependencies, but the problem is in the local system it is managable but how to manage in the aws lambda that was difficult.   
+  
+So to rectify I included LD_LIBRARY_PATH and set the path of the the library with lib file required by lxml.  But still it was showing errors of permisision denied so I used chmod 755 to give excutable access to the files and now it was working fine. But there was still a problem though everything was working fine in the local system it was not executing the in the lambda funciton as to do so the virtual environment was needed to be activated, but the problem how to do that and thus it was difficult to proceed ahead,  
+  
+So then I realised that the problem is the setup. So I am building a serverless model when it should not be like instead it should be a complete server model so now I have shifted my project to EC2 and triggering the dynamodb and set the cron job for automation. And create the serverless model for the lambda function ALEXA is calling.  
+  
+4) was facing problem to create xpaths when we require to select two div positions, came to realise it can be done by div[position=3 or position=4]  
+  
+____
+  
+
+# THINGS TO KNOW
+
+## Why to use shebang #!/usr/bin/env python  
+  
+See this is different, env is to point to a virtual environment.   
+A reason not to use /usr/bin/env is that then the name of the process is not the name of the script. Having the script name as the process name is helpful in looking at process listings and when it is behaving badly and you need to kill it.  
+  
+  
+## use of requirements.txt  
+  
+To build the requirements.txt you have use the following commmand. ``` pip freeze > requirements.txt``` This helps to keep in track of all the packages installed.  
+  
