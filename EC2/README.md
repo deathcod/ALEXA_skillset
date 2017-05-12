@@ -110,7 +110,8 @@ If your filezilla is not executing.
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test   
 sudo apt-get update  
 sudo apt-get upgrade  
-sudo apt-get dist-upgrade```  
+sudo apt-get dist-upgrade
+```  
   
 managing ec2 inside filezilla  
 http://stackoverflow.com/questions/16744863/connect-to-amazon-ec2-file-directory-using-filezilla-and-sftp  
