@@ -32,3 +32,38 @@ GetCompetitions {fetch} {count} contests
 GetCompetitions {fetch} {count} contest
 GetCompetitions {fetch} {count} challenges
 GetCompetitions {fetch} {count} challenge
+
+GetCompetitions {fetch} competitions
+GetCompetitions {fetch} competition
+GetCompetitions {fetch} contests
+GetCompetitions {fetch} contest
+GetCompetitions {fetch} challenges
+GetCompetitions {fetch} challenge
+
+GetCompetitions {fetch} {count} {status} {type} 
+GetCompetitions {fetch} {count} {status} {type} 
+GetCompetitions {fetch} {count} {status} {type} 
+GetCompetitions {fetch} {count} {status} {type} 
+GetCompetitions {fetch} {count} {status} {type} 
+GetCompetitions {fetch} {count} {status} {type} 
+
+GetCompetitions {fetch} {count} {status} 
+GetCompetitions {fetch} {count} {status} 
+GetCompetitions {fetch} {count} {status} 
+GetCompetitions {fetch} {count} {status} 
+GetCompetitions {fetch} {count} {status} 
+GetCompetitions {fetch} {count} {status} 
+
+GetCompetitions {fetch} {status} {type} 
+GetCompetitions {fetch} {status} {type} 
+GetCompetitions {fetch} {status} {type} 
+GetCompetitions {fetch} {status} {type} 
+GetCompetitions {fetch} {status} {type} 
+GetCompetitions {fetch} {status} {type} 
+
+GetCompetitions {fetch} {status} 
+GetCompetitions {fetch} {status} 
+GetCompetitions {fetch} {status} 
+GetCompetitions {fetch} {status} 
+GetCompetitions {fetch} {status} 
+GetCompetitions {fetch} {status} 
