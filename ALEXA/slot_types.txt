@@ -1,0 +1,4 @@
+LIST_FETECH 	Load | Get | Fetch | Retrieve 	
+LIST_COUNT 		one | two | three | four | five | six | seven | eight | nine 	
+LIST_STATUS 	future | upcoming | onging | recent | latest 	
+LIST_TYPE 	 	all | hackathon | coding | algorithmic | competitive programming 	
