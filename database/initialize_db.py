@@ -104,3 +104,26 @@ class DynamoDB(object):
 				print(json.dumps(item, indent=4, cls=DecimalEncoder))
 			pass
 		pass
+
+	# This is to scan the data and get return the value in JSON
+	def scan_data(self, fe, sort = True, count = 2):
+		table = self.dynamodb.Table(self.table_name)
+		response = table.scan( FilterExpression = fe)
+
+		if self.DEPLOY == False:
+			for i in response['Items']:
+				print(json.dumps(i, cls=DecimalEncoder))
+
+		#print (response)
+
+		while 'LastEvaluatedKey' in response:
+			response = table.scan( FilterExpression = fe)
+
+			if self.DEPLOY == False:
+				for i in response['Items']:
+					print(json.dumps(i, cls=DecimalEncoder))
+					pass
+				pass
+			pass
+
+		return response	
