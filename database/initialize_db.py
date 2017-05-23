@@ -48,7 +48,7 @@ class DynamoDB(object):
 			TableName = self.table_name,
 			KeySchema = [
 				{
-					'AttributeName' : 'competiton_name',
+					'AttributeName' : 'classification',
 					'KeyType' : 'HASH'  #Partition key
 				},
 				{
@@ -58,7 +58,7 @@ class DynamoDB(object):
 			],
 			AttributeDefinitions = [
 				{
-					'AttributeName' : 'competiton_name',
+					'AttributeName' : 'classification',
 					'AttributeType' : 'S'
 				},
 				{
@@ -106,7 +106,7 @@ class DynamoDB(object):
 		pass
 
 	# This is to scan the data and get return the value in JSON
-	def scan_data(self, fe, sort = True, count = 2):
+	def scan_data(self, fe):
 		table = self.dynamodb.Table(self.table_name)
 		response = table.scan( FilterExpression = fe)
 
@@ -127,3 +127,26 @@ class DynamoDB(object):
 			pass
 
 		return response	
+
+
+	# True : Ascending, False : Descending
+	def query_data(self, Ke, Fe, sort = True):
+		table = self.dynamodb.Table(self.table_name)
+
+		if Fe == None:
+			response = table.query(
+			KeyConditionExpression = Ke,
+			ScanIndexForward = sort
+			)
+		else:
+			response = table.query(
+			KeyConditionExpression = Ke,
+			ScanIndexForward = sort,
+			FilterExpression = Fe
+			)
+
+		if self.DEPLOY == False:
+			for i in response['Items']:
+				print (i)
+
+		return json.dumps(response['Items'], cls=DecimalEncoder)

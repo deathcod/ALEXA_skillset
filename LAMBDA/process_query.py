@@ -7,11 +7,12 @@ sys.path.append(os.path.dirname(CURRENT_DIR))
 from boto3.dynamodb.conditions import Key, Attr
 from datetime import datetime 
 from database import initialize_db
+import json
 
 DEPLOY = True
 db = initialize_db.DynamoDB('competitons_', DEPLOY = DEPLOY)
 
-def fetch( count = 'two', status = 'recent', type = 'all'):
+def Fetch( count = 'two', status = 'recent', type = 'all'):
 
 	#getting the cuurent time
 	now = datetime.now()
@@ -23,24 +24,23 @@ def fetch( count = 'two', status = 'recent', type = 'all'):
 	#testing!!
 	#now = 1494436083
 
+	#Setting default value for FilterExpresion
+	Fe = None
 
 	# True : Ascending, False : Descending
+	#Setting default value for ScanIndexForward
 	sort = True
 	if status == 'future':
-		fe = Key('start_time').gt(now)
+		Ke = Key('start_time').gt(now)
 		sort = False
 	elif status == 'ongoing':
-		fe = Key('start_time').lte(now) & Key('end_time').gt(now)
+		Ke = Key('start_time').lte(now)
+		Fe = Attr('end_time').gt(now)
 	else:
-		fe = Key('start_time').gt(now)
+		Ke = Key('start_time').gt(now)
 
 
-	if type == 'hackathon':
-		fe &= Attr('classification').eq('h')
-	elif type == 'coding' or type == 'algorithmic' or type == 'competitive programming':
-		fe &= Attr('classification').eq('cp')
-	
-
+	#Setting default value for no_of_count
 	no_of_count = 2
 
 	if count == 'one' : 
@@ -64,7 +64,29 @@ def fetch( count = 'two', status = 'recent', type = 'all'):
 	else:
 		no_of_count = 10
 
-	response = db.scan_data(fe, sort, count)
 
+	if type == 'hackathon':
+		Ke &= Key('classification').eq('h')
+		response = json.loads(db.query_data(Ke, Fe, sort))
 
-fetch()
+	elif type == 'coding' or type == 'algorithmic' or type == 'competitive programming':
+		Ke &= Key('classification').eq('cp')
+		response = json.loads(db.query_data(Ke, Fe, sort))
+
+	else:
+		KKe = Ke & Key('classification').eq('cp')
+		response = json.loads(db.query_data(KKe, Fe, sort))
+
+		KKe = Ke & Key('classification').eq('h')
+		response += json.loads(db.query_data(KKe, Fe, sort))
+
+		#write lambda function to sort the values according to the sort given
+		response = sorted(response, key = lambda x : x['start_time'], reverse = not sort) #reverse = True : descending, so using opposite of sort
+
+	x = len(response) if len(response)<= no_of_count else no_of_count
+	response = response[0:x]
+	#print (response)
+
+	return response
+
+# Fetch(status = 'future' )

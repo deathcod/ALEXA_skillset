@@ -12,5 +12,5 @@ from src import scrapping_sites
 DEPLOY = True
 x = initialize_db.DynamoDB('competitons_', DEPLOY = DEPLOY)
 #x.put_data(scrapping_sites.codeforces(DEPLOY = DEPLOY))
-x.put_data(scrapping_sites.codechef(DEPLOY = DEPLOY))
+#x.put_data(scrapping_sites.codechef(DEPLOY = DEPLOY))
 x.put_data(scrapping_sites.venturesity(DEPLOY = DEPLOY))
