@@ -167,9 +167,15 @@ def get_competitions(intent, current_time):
 
     session_attributes = {}
     card_title = "get_competitions"
+    '''
     speech_output = "<speak>" \
                     "Snack down will start from" \
                     "<say-as interpret-as='date'>????0112</say-as>" \
+                    "</speak>"
+    '''
+
+    speech_output = "<speak>"\
+                    "This is what Alexa sounds like without any SSML." \
                     "</speak>"
 
     reprompt_text = ""
