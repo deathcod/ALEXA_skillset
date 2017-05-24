@@ -8,7 +8,7 @@ rm xyz.zip
 zip -r xyz.zip ../database
 
 #getting the files which are necessary
-zip -r xyz.zip index.py process_query.py
+zip -r xyz.zip index.py process_query.py time_to_word.py
 
 #invoking aws lambda function 
 aws lambda update-function-code --region us-east-1 --function-name get_coding --zip-file fileb://xyz.zip
