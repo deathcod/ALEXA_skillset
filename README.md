@@ -37,4 +37,4 @@ ___
 
 For contributions please do ping me up at chinmay.rakshit@gmail.com
 
-** Every inovation saw a lot of faliures in its journey to success, :) Friends please contribute to this failure **
+**Every inovation saw a lot of faliures in its journey to success, :) Friends please contribute to this failure**
