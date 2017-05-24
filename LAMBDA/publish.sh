@@ -7,7 +7,7 @@ rm xyz.zip
 zip -r xyz.zip index.py process_query.py
 
 #invoking aws lambda function 
-aws lambda update-function-code --region us-east-1 --function-name schedule_task --zip-file fileb://xyz.zip
+aws lambda update-function-code --region us-east-1 --function-name get_coding --zip-file fileb://xyz.zip
 
 #invoking git the credentials are already saved.
 git add --all
