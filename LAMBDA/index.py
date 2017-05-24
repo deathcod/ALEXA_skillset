@@ -167,7 +167,7 @@ def get_competitions(intent, current_time):
 
     session_attributes = {}
     card_title = "get_competitions"
-    '''
+    
     speech_output = "<speak>" \
                     "Snack down will start from" \
                     "<say-as interpret-as='date'>????0112</say-as>" \
@@ -177,7 +177,7 @@ def get_competitions(intent, current_time):
     speech_output = "<speak>"\
                     "This is what Alexa sounds like without any SSML." \
                     "</speak>"
-
+    '''
     reprompt_text = ""
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
