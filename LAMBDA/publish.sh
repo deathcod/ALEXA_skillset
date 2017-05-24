@@ -3,6 +3,10 @@
 
 rm xyz.zip
 
+#inserting the database file in the zip
+
+zip -r xyz.zip ../database
+
 #getting the files which are necessary
 zip -r xyz.zip index.py process_query.py
 
