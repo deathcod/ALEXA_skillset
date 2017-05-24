@@ -8,6 +8,7 @@ sys.path.append(os.path.dirname(CURRENT_DIR))
 from process_query import Fetch
 import json
 from datetime import datetime
+from time_to_word import TimeInWords
 
 # --------------- Helpers that build all of the responses ----------------------
 
@@ -149,29 +150,56 @@ def get_competitions(intent, current_time):
     current_time = datetime.strptime(current_time, "%Y-%m-%dT%H:%M:%SZ")
     current_time -= epoch
     current_time = int(current_time.total_seconds())
-
     x = {'count' : 2, 'status' : 'recent', 'type': 'all', 'DEPLOY': True, 'now': current_time}
     
     if 'value' in intent['slots']['count']:
         x['count'] = int(intent['slots']['count']['value'])
     
-    if 'type' in intent['slots']['type']:
-        x['type'] = int(intent['slots']['count']['type'])
+    if 'value' in intent['slots']['type']:
+        x['type'] = intent['slots']['type']['value']
 
-    if 'status' in intent['slots']['status']:
-        x['status'] = int(intent['slots']['count']['status'])
+    if 'value' in intent['slots']['status']:
+        x['status'] = intent['slots']['status']['value']
 
-    #response = Fetch(**x)
+    response = Fetch(**x)
 
-    reply = ['','']
+    reply = ['''
+                <speak>
+                %s will start at %s,  
+                <say-as interpret-as='date'>????%s</say-as>,
+                in %s.com
+                </speak> 
+            ''',
+            '''
+                <speak>
+                %s has started since %s,
+                <say-as interpret-as='date'>????%s</say-as>,
+                and will end at %s,
+                <say-as interpret-as='date'>????%s</say-as>,
+                in %s.com
+                </speak> 
+            '''
+            ]
 
     session_attributes = {}
     card_title = "get_competitions"
     
-    speech_output = "<speak>" \
-                    "Snack down will start from" \
-                    "<say-as interpret-as='time'>1 1\'21\"</say-as>" \
-                    "</speak>"
+    speech_output = ""
+    if x['status'] == 'ongoing':
+        for i in response:
+            
+            start_time = TimeInWords(i["start_time"])
+            end_time = TimeInWords(i["end_time"])
+
+            #reference process_query.json    
+            speech_output = reply[1] %(i["competiton_name"] #competiton_name
+                                       ,start_time.caltime() #time in words, start_time
+                                       ,start_time.calmonth_day() #month_day, start_time
+                                       ,end_time.caltime() #time in words, end_time
+                                       ,end_time.calmonth_day() #month_day, end_time
+                                       ,i['site_name']  #site_name
+                                       )
+            break
     '''
 
     speech_output = "<speak>"\

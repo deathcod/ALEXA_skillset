@@ -13,3 +13,11 @@
 ```Error: Unable to parse the provided SSML. The provided text is not valid SSML.```
 
 So this was a basic error, and helped me to learn new stuff. So from this error I came to know about SSML(Speech Synthesis Markup Language).
+
+
+___
+
+## THINGS TO REMEMBER
+
+ALEXA SSML DOC  
+https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference
