@@ -171,7 +171,13 @@ def get_competitions(intent, current_time):
                 </speak> 
             ''',
             '''
-                <speak>%s has started since %s,<say-as interpret-as='date'>????%s</say-as>, and will end at %s, <say-as interpret-as='date'>????%s</say-as>, in %s.com </speak> 
+                <speak>
+                %s has started since %s,
+                <say-as interpret-as='date'>????%s</say-as>,
+                and will end at %s,
+                <say-as interpret-as='date'>????%s</say-as>,
+                in %s.com
+                </speak> 
             '''
             ]
 
