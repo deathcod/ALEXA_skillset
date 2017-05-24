@@ -213,7 +213,13 @@ def get_competitions(intent, current_time):
 
     
     speech_output += "</speak>"     
-    reprompt_text = ""
+    reprompt_text = '''
+                    <speak>
+                    I know I speak too fast 
+                    <amazon:effect name="whispered">I am sorry</amazon:effect>
+                    But you can follow me if you lower down your query count.
+                    </speak>
+                    '''
 
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
