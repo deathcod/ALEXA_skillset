@@ -35,7 +35,7 @@ Change the origin master to the branch name if you are creating a new branch
 
 * a testing folder is kept where possible input jsons are stored. Do keep all the jsons there
 
-* DEPLOY = False, by changing the DEPLOY keyword it is set up for the local machine, local database is used and also it prints all the json inserted or fetched from the database. It will show the work flow and all the data circulation.
+* DEPLOY = False, by changing the DEPLOY keyword it is set up for the local machine, local database is used and also it prints all the json inserted or fetched from the database. It will show the work flow and all the data circulation. Make sure the local dynamoDb is running for installation and setting up follow the instruction in EC2 README.
 
 * index.py
 It has a testing_lambda() function this function is used to test the lambda handler with the input json from the testing folder.  
