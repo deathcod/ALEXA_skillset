@@ -197,6 +197,7 @@ def get_competitions(intent, current_time):
                                        ,end_time.calmonth_day()     #month_day, end_time
                                        ,i['site_name']              #site_name
                                        )
+            speech_output += '<break time="0.5s"/>'
 
     else:
         for i in response:
@@ -208,11 +209,12 @@ def get_competitions(intent, current_time):
                                         ,start_time.calmonth_day()  #month_day, start_time
                                         ,i['site_name']             #site_name
                                         )
+            speech_output += '<break time="0.5s"/>'
 
     
     speech_output += "</speak>"     
     reprompt_text = ""
-    
+
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
