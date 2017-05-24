@@ -163,6 +163,8 @@ def get_competitions(intent, current_time):
 
     response = Fetch(**x)
 
+    #reply structures
+    #TODO add more structures in future.
     reply = ['''
                 %s will start at %s,  
                 <say-as interpret-as='date'>????%s</say-as>,
@@ -188,26 +190,29 @@ def get_competitions(intent, current_time):
             end_time = TimeInWords(i["end_time"])
 
             #reference process_query.json    
-            speech_output += reply[1] %(i["competiton_name"] #competiton_name
-                                       ,start_time.caltime() #time in words, start_time
-                                       ,start_time.calmonth_day() #month_day, start_time
-                                       ,end_time.caltime() #time in words, end_time
-                                       ,end_time.calmonth_day() #month_day, end_time
-                                       ,i['site_name']  #site_name
+            speech_output += reply[1] %(i["competiton_name"]        #competiton_name
+                                       ,start_time.caltime()        #time in words, start_time
+                                       ,start_time.calmonth_day()   #month_day, start_time
+                                       ,end_time.caltime()          #time in words, end_time
+                                       ,end_time.calmonth_day()     #month_day, end_time
+                                       ,i['site_name']              #site_name
                                        )
+
+    else:
+        for i in response:
+            start_time = TimeInWords(i["start_time"])
+
+            #reference process_query.json  
+            speech_output += reply[0] %(i["competiton_name"]        #competiton_name
+                                        ,start_time.caltime()       #time in words, start_time
+                                        ,start_time.calmonth_day()  #month_day, start_time
+                                        ,i['site_name']             #site_name
+                                        )
+
     
     speech_output += "</speak>"     
-    '''
-
-    speech_output = "<speak>"\
-                    "This is what Alexa sounds like without any SSML." \
-                    "</speak>"
-    '''
     reprompt_text = ""
-    # If the user either does not reply to the welcome message or says something
-    # that is not understood, they will be prompted again with this text.
-    #reprompt_text = "Please tell me your favorite color by saying, " \
-    #               "my favorite color is red."
+    
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
