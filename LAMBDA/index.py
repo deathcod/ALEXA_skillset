@@ -164,27 +164,23 @@ def get_competitions(intent, current_time):
     response = Fetch(**x)
 
     reply = ['''
-                <speak>
                 %s will start at %s,  
                 <say-as interpret-as='date'>????%s</say-as>,
                 in %s.com
-                </speak> 
             ''',
             '''
-                <speak>
                 %s has started since %s,
                 <say-as interpret-as='date'>????%s</say-as>,
                 and will end at %s,
                 <say-as interpret-as='date'>????%s</say-as>,
                 in %s.com
-                </speak> 
             '''
             ]
 
     session_attributes = {}
     card_title = "get_competitions"
     
-    speech_output = ""
+    speech_output = "<speak>"
     if x['status'] == 'ongoing':
         for i in response:
             
@@ -199,7 +195,8 @@ def get_competitions(intent, current_time):
                                        ,end_time.calmonth_day() #month_day, end_time
                                        ,i['site_name']  #site_name
                                        )
-            
+    
+    speech_output += "</speak>"     
     '''
 
     speech_output = "<speak>"\
