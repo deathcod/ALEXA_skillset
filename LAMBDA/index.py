@@ -1,14 +1,13 @@
-"""
-This sample demonstrates a simple skill built with the Amazon Alexa Skills Kit.
-The Intent Schema, Custom Slots, and Sample Utterances for this skill, as well
-as testing instructions are located at http://amzn.to/1LzFrj6
-
-For additional samples, visit the Alexa Skills Kit Getting Started guide at
-http://amzn.to/1LGWsLG
-"""
-
+#!/usr/bin/env python
 from __future__ import print_function
+import os, sys
 
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(CURRENT_DIR))
+
+from process_query import Fetch
+import json
+from datetime import datetime
 
 # --------------- Helpers that build all of the responses ----------------------
 
@@ -50,9 +49,7 @@ def get_welcome_response():
 
     session_attributes = {}
     card_title = "Welcome"
-    speech_output = "Welcome to the Alexa Skills Kit sample. " \
-                    "Please tell me your favorite color by saying, " \
-                    "my favorite color is red"
+    speech_output = "Welcome to the Alexa Skills Kit."
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
     reprompt_text = "Please tell me your favorite color by saying, " \
@@ -145,6 +142,48 @@ def on_launch(launch_request, session):
     return get_welcome_response()
 
 
+def get_competitions(intent, current_time):
+    ''' Called when GetCompetition intent is called '''
+
+    epoch = datetime.utcfromtimestamp(0)
+    current_time = datetime.strptime(current_time, "%Y-%m-%dT%H:%M:%SZ")
+    current_time -= epoch
+    current_time = int(current_time.total_seconds())
+
+    x = {'count' : 2, 'status' : 'recent', 'type': 'all', 'DEPLOY': True, 'now': current_time}
+    
+    if 'value' in intent['slots']['count']:
+        x['count'] = int(intent['slots']['count']['value'])
+    
+    if 'type' in intent['slots']['type']:
+        x['type'] = int(intent['slots']['count']['type'])
+
+    if 'status' in intent['slots']['status']:
+        x['status'] = int(intent['slots']['count']['status'])
+
+    #response = Fetch(**x)
+
+    reply = ['','']
+
+    session_attributes = {}
+    card_title = "get_competitions"
+    speech_output = "<speak>" \
+                    "Snack down will start from" \
+                    "<say-as interpret-as='date'>????0112</say-as>" \
+                    "</speak>"
+
+    reprompt_text = ""
+    # If the user either does not reply to the welcome message or says something
+    # that is not understood, they will be prompted again with this text.
+    #reprompt_text = "Please tell me your favorite color by saying, " \
+    #               "my favorite color is red."
+    should_end_session = False
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+    pass
+
+
 def on_intent(intent_request, session):
     """ Called when the user specifies an intent for this skill """
 
@@ -163,6 +202,8 @@ def on_intent(intent_request, session):
         return get_welcome_response()
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
         return handle_session_end_request()
+    elif intent_name == "GetCompetitions":
+        return get_competitions(intent,intent_request['timestamp'])
     else:
         raise ValueError("Invalid intent")
 
@@ -205,3 +246,14 @@ def lambda_handler(event, context):
         return on_intent(event['request'], event['session'])
     elif event['request']['type'] == "SessionEndedRequest":
         return on_session_ended(event['request'], event['session'])
+
+
+def testing_lambda():
+    x = ""
+    with open( CURRENT_DIR +'/testing/input1.json','r') as f:
+        x = json.loads(f.read())
+        pass
+    print (lambda_handler(x, " "))
+    pass
+
+#testing_lambda()

@@ -1,0 +1,41 @@
+{
+  "session": {
+    "sessionId": "SessionId.b2968dcd-9ebc-47dd-aa57-293887027bc2",
+    "application": {
+      "applicationId": "amzn1.ask.skill.d25af106-b6bb-4fc0-afc5-af0b37cdf05c"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.ask.account.AH36BOXRLD5OH7NWWC6UREIRDITMVXOHNP32FLEG7DXI6UQQNVISXXN3SGGGPSRJ56DWPAFXMTTNILPAZTQ5LBQ6VLM3UBOZCRHE3RKB66FI6ZRZK3C4GCO6L7UUFJFTQFEHXOIU2ABWB7MO7JTAB4P3T244LYUWSCC44Q76SD3A6VTUJYAQTK3HDMBQJWCZ7YUQQM2WE6L6UUY"
+    },
+    "new": true
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.d22d7586-9927-4059-9ada-bbd3f1b3d5dc",
+    "locale": "en-US",
+    "timestamp": "2017-05-23T15:24:44Z",
+    "intent": {
+      "name": "GetCompetitions",
+      "slots": {
+        "fetch": {
+          "name": "fetch",
+          "value": "get"
+        },
+        "count": {
+          "name": "count",
+          "value": "3"
+        },
+        "type": {
+          "name": "type",
+          "value": "hackathon"
+        },
+        "status": {
+          "name": "status",
+          "value": "recent"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

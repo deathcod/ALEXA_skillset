@@ -3,14 +3,8 @@
 
 rm xyz.zip
 
-#getting the list of all package
-cd myenv/lib/python3.4/site-packages
-zip -r ../../../../xyz.zip *
-cd ../../../..
-
-
 #getting the files which are necessary
-zip -r xyz.zip database src index.py test LIB
+zip -r xyz.zip index.py process_query.py
 
 #invoking aws lambda function 
 aws lambda update-function-code --region us-east-1 --function-name schedule_task --zip-file fileb://xyz.zip
