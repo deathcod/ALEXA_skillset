@@ -1,6 +1,6 @@
 # ALEXA_skillset  
 
-This is my self project to understand how ALEXA works and how AWS works. So here I am tried to build a basic assistant who notifies you with all the coding and hackathons going online. The current version only supports codechef, codeforces, Venturesity.
+This is my self project to understand how ALEXA works and how AWS works. So here I am trying to build a basic assistant who notifies you with all the coding and hackathons going online. The current version only supports codechef, codeforces, Venturesity.
 
 My aim in this project is to build a product that can be tested locally without using AWS and then deploy in AWS. I am trying to achieve some of the checkpoints that I set for myself. Like having a quality code and scalability. Also noting down all the problems I faced in the journey. 
 
