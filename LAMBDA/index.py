@@ -170,7 +170,7 @@ def get_competitions(intent, current_time):
     
     speech_output = "<speak>" \
                     "Snack down will start from" \
-                    "<say-as interpret-as='date'>????0112</say-as>" \
+                    "<say-as interpret-as='time'>1\'21\"</say-as>" \
                     "</speak>"
     '''
 
