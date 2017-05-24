@@ -192,14 +192,14 @@ def get_competitions(intent, current_time):
             end_time = TimeInWords(i["end_time"])
 
             #reference process_query.json    
-            speech_output = reply[1] %(i["competiton_name"] #competiton_name
+            speech_output += reply[1] %(i["competiton_name"] #competiton_name
                                        ,start_time.caltime() #time in words, start_time
                                        ,start_time.calmonth_day() #month_day, start_time
                                        ,end_time.caltime() #time in words, end_time
                                        ,end_time.calmonth_day() #month_day, end_time
                                        ,i['site_name']  #site_name
                                        )
-            break
+            
     '''
 
     speech_output = "<speak>"\
