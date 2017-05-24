@@ -128,6 +128,12 @@ At last set whenever ec2 loads the virtual environment also loads
 ```  
 echo "source /home/ec2-user/EC2/myenv/bin/activate" >> /home/ec2-user/.bashrc  
 ```
+ 
+**testing offine**  
+
+* first start the local DynamoDb
+* set DEPLOY = False, Second run the index.py.
+This will trigger the local database and also it will print all the steps it is taking , so all the print statements are hidden inside the DEPLOY variable and is spread over the full project. So that only one variable can decide from the start whether its offline development or online.
 
 ____
 
