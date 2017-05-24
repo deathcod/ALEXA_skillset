@@ -20,6 +20,12 @@
         }
       ],
       "intent": "GetCompetitions"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
     }
   ]
 }
