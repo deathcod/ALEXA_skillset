@@ -127,7 +127,6 @@ def get_competitions(intent, current_time):
             ''',
             '''
                 %s has started since %s,
-                <say-as interpret-as='time'>1:12:22</say-as>
                 <say-as interpret-as='date'>????%s</say-as>,
                 and will end at %s,
                 <say-as interpret-as='date'>????%s</say-as>,
