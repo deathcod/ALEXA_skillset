@@ -8,6 +8,7 @@ sys.path.append(os.path.dirname(CURRENT_DIR))
 from process_query import Fetch
 import json
 from datetime import datetime
+import time
 from time_to_word import TimeInWords
 
 # --------------- Helpers that build all of the responses ----------------------
