@@ -15,8 +15,8 @@ from time_to_word import TimeInWords
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
     return {
         'outputSpeech': {
-            'type': 'SSML',
-            'ssml': output
+            'type': 'PlainText',
+            'text': output
         },
         'card': {
             'type': 'Simple',
@@ -25,8 +25,8 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
         },
         'reprompt': {
             'outputSpeech': {
-                'type': 'SSML',
-                'ssml': reprompt_text
+                'type': 'PlainText',
+                'text': reprompt_text
             }
         },
         'shouldEndSession': should_end_session
@@ -50,18 +50,16 @@ def get_welcome_response():
 
     session_attributes = {}
     card_title = "Welcome"
-    speech_output = "<speak>Welcome to the CodeGeek.</speak>"
+    speech_output = "Welcome to the CodeGeek."
     
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
     reprompt_text = '''
-                    <speak>
                     Please tell me what information you want on coding competitions, like
                     get recent competitions or
                     fetch two recent competitions or
                     retrieve future hackathon competitions or
                     fetch onging coding contest
-                    </speak>
                     '''
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
@@ -70,8 +68,8 @@ def get_welcome_response():
 
 def handle_session_end_request():
     card_title = "Session Ended"
-    speech_output = "<speak>Thank you for trying the CodeGeek. " \
-                    "Have a nice day! </speak>"
+    speech_output = "Thank you for trying the CodeGeek. " \
+                    "Have a nice day!"
 
     # Setting this to true ends the session and exits the skill.
     should_end_session = True
@@ -121,15 +119,12 @@ def get_competitions(intent, current_time):
     #reply structures
     #TODO add more structures in future.
     reply = ['''
-                %s will start at %s,  
-                <say-as interpret-as='date'>????%s</say-as>,
+                %s will start at %s,
                 in %s.com
             ''',
             '''
                 %s has started since %s,
-                <say-as interpret-as='date'>????%s</say-as>,
                 and will end at %s,
-                <say-as interpret-as='date'>????%s</say-as>,
                 in %s.com
             '''
             ]
@@ -137,43 +132,33 @@ def get_competitions(intent, current_time):
     session_attributes = {}
     card_title = "get_competitions"
     
-    speech_output = "<speak>"
+    speech_output = ""
     if x['status'] == 'ongoing':
         for i in response:
             
-            start_time = TimeInWords(i["start_time"])
-            end_time = TimeInWords(i["end_time"])
+            start_time = time.strftime('%d-%h ,%I:%M %p',time.gmtime(i["start_time"]))
+            end_time = time.strftime('%d-%h ,%I:%M %p',time.gmtime(i["end_time"]))
 
             #reference process_query.json    
             speech_output += reply[1] %(i["competiton_name"]        #competiton_name
-                                       ,start_time.caltime()        #time in words, start_time
-                                       ,start_time.calmonth_day()   #month_day, start_time
-                                       ,end_time.caltime()          #time in words, end_time
-                                       ,end_time.calmonth_day()     #month_day, end_time
+                                       ,start_time
+                                       ,end_time
                                        ,i['site_name']              #site_name
                                        )
-            speech_output += '<break time="0.5s"/>'
 
     else:
         for i in response:
-            start_time = TimeInWords(i["start_time"])
+            start_time = time.strftime('%d-%h ,%I:%M %p',time.gmtime(i["start_time"]))
 
             #reference process_query.json  
             speech_output += reply[0] %(i["competiton_name"]        #competiton_name
-                                        ,start_time.caltime()       #time in words, start_time
-                                        ,start_time.calmonth_day()  #month_day, start_time
+                                        ,start_time
                                         ,i['site_name']             #site_name
                                         )
-            speech_output += '<break time="0.5s"/>'
-
     
-    speech_output += "</speak>"     
     reprompt_text = '''
-                    <speak>
-                    I know I speak too fast 
-                    <amazon:effect name="whispered">I am sorry</amazon:effect>
+                    I know I speak too fast,
                     But you can follow me if you lower down your query count.
-                    </speak>
                     '''
 
     should_end_session = False
