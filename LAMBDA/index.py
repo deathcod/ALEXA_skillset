@@ -81,7 +81,7 @@ def get_welcome_response():
                     retrieve future hackathon competitions or
                     fetch onging coding contest
                     '''
-    should_end_session = False
+    should_end_session = True
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
@@ -181,7 +181,7 @@ def get_competitions(intent, current_time):
                     But you can follow me if you lower down your query count.
                     '''
 
-    should_end_session = False
+    should_end_session = True
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
