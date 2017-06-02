@@ -154,6 +154,7 @@ def get_competitions(intent, current_time):
     if 'value' in intent['slots']['status']:
         x['status'] = intent['slots']['status']['value']
 
+    
     response = Fetch(**x)
 
     #reply structures
