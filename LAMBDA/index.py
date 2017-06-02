@@ -57,7 +57,7 @@ def help_response():
                     You can also specify the type like hackathon or coding
                     To start please say, "get two upcoming coding competitions"
                     '''
-
+    reprompt_text = ""
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
