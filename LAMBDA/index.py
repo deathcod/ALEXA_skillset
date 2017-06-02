@@ -146,7 +146,7 @@ def get_competitions(intent, current_time):
     x = {'count' : 2, 'status' : 'recent', 'type': 'all', 'DEPLOY': True, 'now': current_time}
     
     if 'value' in intent['slots']['fetch']:
-        if 'value' not in ['load', 'get', 'fetch', 'retrieve']:
+        if intent['slots']['fetch']['value'] not in ['load', 'get', 'fetch', 'retrieve']:
             return invalid_response()
 
     if 'value' in intent['slots']['count']:
