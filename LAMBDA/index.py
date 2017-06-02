@@ -145,16 +145,25 @@ def get_competitions(intent, current_time):
     current_time = int(current_time.total_seconds())
     x = {'count' : 2, 'status' : 'recent', 'type': 'all', 'DEPLOY': True, 'now': current_time}
     
+    if 'fetch' not in ['Load', 'Get', 'Fetch', 'Retrieve']:
+        return invalid_response()
+
     if 'value' in intent['slots']['count']:
         x['count'] = int(intent['slots']['count']['value'])
+        if x['count'] not in ['one', 'two', 'three']:
+            return invalid_response()
     
     if 'value' in intent['slots']['type']:
         x['type'] = intent['slots']['type']['value']
+        if x['type'] not in ['all', 'hackathon', 'coding', 'algorithmic', 'competitive programming']:
+            return invalid_response()
+
 
     if 'value' in intent['slots']['status']:
         x['status'] = intent['slots']['status']['value']
+        if x['status'] not in ['future', 'upcoming', 'onging', 'recent', 'latest']:
+            return invalid_response()
 
-    
     response = Fetch(**x)
 
     #reply structures
