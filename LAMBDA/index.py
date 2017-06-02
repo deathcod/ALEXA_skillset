@@ -44,6 +44,27 @@ def build_response(session_attributes, speechlet_response):
 
 # --------------- Functions that control the skill's behavior ------------------
 
+def help_response():
+
+    session_attributes = {}
+    card_title = "Help"
+    speech_output = '''
+                    Hi I am CodeGeek. I will be assisting you to know the latest 
+                    online competitions such as hackathons or coding competitions going over 
+                    different online platform.
+                    You can ask me to get ongoing, upcoming competitions.
+                    You can ask me the count of competitions like two upcoming or three upcoming
+                    You can also specify the type like hackathon or coding
+                    To start please say, "get two upcoming coding competitions"
+                    '''
+
+    should_end_session = False
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+    pass
+
+
 def get_welcome_response():
     """ If we wanted to initialize the session to have some attributes we could
     add those here
@@ -180,7 +201,7 @@ def on_intent(intent_request, session):
 
     # Dispatch to your skill's intent handlers
     if intent_name == "AMAZON.HelpIntent":
-        return get_welcome_response()
+        return help_response()
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
         return handle_session_end_request()
     elif intent_name == "GetCompetitions":

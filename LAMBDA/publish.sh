@@ -15,5 +15,5 @@ aws lambda update-function-code --region us-east-1 --function-name get_coding --
 
 #invoking git the credentials are already saved.
 git add --all
-git commit -m "new change"
+git commit -m "changing the speech output"
 git push origin master
