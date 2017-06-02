@@ -53,9 +53,9 @@ def help_response():
                     online competitions such as hackathons or coding competitions going over 
                     different online platform.
                     You can ask me to get ongoing, upcoming competitions.
-                    You can ask me the count of competitions like two upcoming or three upcoming
-                    You can also specify the type like hackathon or coding
-                    To start please say, "get two upcoming coding competitions"
+                    You can ask me the count of competitions like two upcoming or three upcoming.
+                    You can also specify the type like hackathon or coding.
+                    To start please say, "get two upcoming coding competitions".
                     '''
     reprompt_text = ""
     should_end_session = False
@@ -76,10 +76,10 @@ def get_welcome_response():
     # that is not understood, they will be prompted again with this text.
     reprompt_text = '''
                     Please tell me what information you want on coding competitions, like
-                    get recent competitions or
-                    fetch two recent competitions or
-                    retrieve future hackathon competitions or
-                    fetch onging coding contest
+                    "get recent competitions" or
+                    "fetch two recent competitions" or
+                    "retrieve future hackathon competitions" or
+                    "fetch onging coding contest"
                     '''
     should_end_session = True
     return build_response(session_attributes, build_speechlet_response(
@@ -140,12 +140,12 @@ def get_competitions(intent, current_time):
     #TODO add more structures in future.
     reply = ['''
                 %s will start at %s,
-                in %s.com
+                in %s.com .
             ''',
             '''
                 %s has started since %s,
                 and will end at %s,
-                in %s.com
+                in %s.com .
             '''
             ]
 
