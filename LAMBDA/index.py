@@ -63,6 +63,26 @@ def help_response():
         card_title, speech_output, reprompt_text, should_end_session))
 
 
+def invalid_response():
+
+    session_attributes = {}
+    card_title = "Invalid Response"
+    speech_output = '''
+                    Sorry but I didn't understand what you meant.
+                    Please say "help" if you are facing problem.
+                    '''
+
+    reprompt_text = '''
+                     Please tell me what information you want on coding competitions, like
+                    "get recent competitions" or
+                    "fetch two recent competitions" or
+                    "retrieve future hackathon competitions" or
+                    "fetch onging coding contest"
+                    '''
+    should_end_session = False
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
 def get_welcome_response():
     """ If we wanted to initialize the session to have some attributes we could
     add those here
@@ -205,7 +225,7 @@ def on_intent(intent_request, session):
     elif intent_name == "GetCompetitions":
         return get_competitions(intent,intent_request['timestamp'])
     else:
-        raise ValueError("Invalid intent")
+        return invalid_response()
 
 
 def on_session_ended(session_ended_request, session):
