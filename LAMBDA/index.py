@@ -150,7 +150,7 @@ def get_competitions(intent, current_time):
 
     if 'value' in intent['slots']['count']:
         x['count'] = int(intent['slots']['count']['value'])
-        if x['count'] not in ['one', 'two', 'three']:
+        if x['count'] not in [1, 2, 3]:
             return invalid_response()
     
     if 'value' in intent['slots']['type']:
