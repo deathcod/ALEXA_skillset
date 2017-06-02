@@ -62,8 +62,6 @@ def help_response():
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
-    pass
-
 
 def get_welcome_response():
     """ If we wanted to initialize the session to have some attributes we could
