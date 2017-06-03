@@ -101,7 +101,7 @@ def get_welcome_response():
                     "retrieve future hackathon competitions" or
                     "fetch onging coding contest"
                     '''
-    should_end_session = True
+    should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
