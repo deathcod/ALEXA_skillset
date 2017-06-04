@@ -174,3 +174,9 @@ A reason not to use /usr/bin/env is that then the name of the process is not the
   
 To build the requirements.txt you have use the following commmand. ``` pip freeze > requirements.txt``` This helps to keep in track of all the packages installed.  
   
+## Sites to scrap
+
+Analytic vidya  
+https://datahack.analyticsvidhya.com/contest/all/
+
+Devspot
