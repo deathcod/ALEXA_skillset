@@ -49,8 +49,8 @@ def help_response():
     session_attributes = {}
     card_title = "Help"
     speech_output = '''
-                    Hi I am CodeGeek. I will be assisting you to know the latest 
-                    online competitions such as hackathons or coding competitions going over 
+                    Hi, I am CodeGeek. I will be assisting you to know the latest 
+                    online competitions such as, hackathons or coding competitions going over 
                     different online platform.
                     You can ask me to get ongoing, upcoming competitions.
                     You can ask me the count of competitions like two upcoming or three upcoming.
