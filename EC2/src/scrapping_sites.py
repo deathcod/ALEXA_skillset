@@ -235,6 +235,66 @@ def venturesity(DEPLOY = False):
 	'''
 	pass
 
+def analyticsvidhya(DEPLOY = False):
+	x = ""
+	output = []
+	if DEPLOY :
+		x = requests.get("https://datahack.analyticsvidhya.com/contest/all/").text
+	else:
+		with open( CURRENT_DIR +'/testing_sites/input_analyticsvidhya.html','r') as f:
+			x = f.read()
+			pass
+		pass
+
+	tree = html.fromstring(x)
+	contest_name_list = tree.xpath('/html/body/div/div/div/div[2]/ul/li/a/div[2]/h4/text()') #contest name
+	contest_url_list = tree.xpath('/html/body/div/div/div/div[2]/ul/li/a/@href')
+	contest_time_list = tree.xpath('/html/body/div/div/div/div[2]/ul/li/a/div[2]/p/text()[1]')
+
+	length = len(contest_name_list)
+
+	for i in range(length):
+		start_time,end_time = contest_time_list[i].split(' to ')
+	
+		temp = {}
+
+		epoch = datetime.utcfromtimestamp(0)
+		start_time = datetime.strptime(start_time, "%d-%m-%Y")
+		start_time -= epoch
+		start_time = int(start_time.total_seconds())
+		temp["start_time"] = start_time
+
+		epoch = datetime.utcfromtimestamp(0)
+		end_time = datetime.strptime(end_time, "%d-%m-%Y")
+		end_time -= epoch
+		end_time = int(end_time.total_seconds())
+		temp["end_time"] = end_time
+
+		
+		url = 'https://datahack.analyticsvidhya.com'
+		
+		temp["competiton_name"] = contest_name_list[i]
+		temp["site_name"] 		= "Analytics Vidhya"
+		temp["classification"]	= "h"
+		temp["URL"]				= url + contest_url_list[i]
+		output.append(temp)
+
+		del temp, start_time, end_time, epoch, url
+
+		pass
+	del tree, contest_url_list, contest_name_list, contest_time_list, x
+	return output
+	'''
+	/html/body/div/div/div/div[2]/ul/li[1]/a/div[2]/h4 												contest url
+	/html/body/div[1]/div/div/div[2]/table/tbody/tr[1]/td[2]/div[1]/h4/a 					contest name
+	/html/body/div[1]/div/div/div[2]/table/tbody/tr[1]/td[2]/div[1]/p/i 					contest starting and ending date
+	
+	/html/body/div/div/div/div[2]/ul/li[2]/a/div[2]/h4
+
+	https://datahack.analyticsvidhya.com/contest/av-learnup-mumbai-application-of-analytics-in-bank/
+	'''
+	pass
+
 #print (venturesity(DEPLOY = True))
 #print (venturesity())
 
@@ -245,3 +305,4 @@ def venturesity(DEPLOY = False):
 
 #print (codeforces())
 		
+#print (analyticsvidhya(DEPLOY = True))
