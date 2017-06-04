@@ -91,8 +91,8 @@ def get_welcome_response():
     session_attributes = {}
     card_title = "Welcome"
     speech_output = '''
-                    Welcome to the CodeGeek. Please say "get two upcoming coding competitions",
-                    to know the latest upcoming coding contests. Else for more information please say "help"
+                    Welcome to the CodeGeek. Please say, "get two upcoming coding competitions",
+                    to know the latest upcoming coding contests. Else, for more information please say "help"
                     '''
     
     # If the user either does not reply to the welcome message or says something
