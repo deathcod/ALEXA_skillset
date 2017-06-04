@@ -90,7 +90,10 @@ def get_welcome_response():
 
     session_attributes = {}
     card_title = "Welcome"
-    speech_output = "Welcome to the CodeGeek."
+    speech_output = '''
+                    Welcome to the CodeGeek. Please say "get two upcoming coding competitions"
+                    to know the lastest upcoming coding contests. Else for more information please say "help"
+                    '''
     
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
@@ -143,7 +146,7 @@ def get_competitions(intent, current_time):
     current_time = datetime.strptime(current_time, "%Y-%m-%dT%H:%M:%SZ")
     current_time -= epoch
     current_time = int(current_time.total_seconds())
-    x = {'count' : 2, 'status' : 'recent', 'type': 'all', 'DEPLOY': True, 'now': current_time}
+    x = {'count' : 1, 'status' : 'recent', 'type': 'all', 'DEPLOY': True, 'now': current_time}
     
     if 'value' in intent['slots']['fetch']:
         if intent['slots']['fetch']['value'] not in ['load', 'get', 'fetch', 'retrieve']:
