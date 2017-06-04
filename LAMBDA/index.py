@@ -162,7 +162,7 @@ def get_competitions(intent, current_time):
 
     if 'value' in intent['slots']['status']:
         x['status'] = intent['slots']['status']['value']
-        if x['status'] not in ['future', 'upcoming', 'onging', 'recent', 'latest']:
+        if x['status'] not in ['future', 'upcoming', 'ongoing', 'recent', 'latest']:
             return invalid_response()
 
     response = Fetch(**x)
