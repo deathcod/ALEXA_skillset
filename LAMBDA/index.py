@@ -184,7 +184,7 @@ def get_competitions(intent, current_time):
             ]
 
     session_attributes = {}
-    card_title = "get_competitions"
+    card_title = x["type"] + " " + contest
     
     speech_output = ""
     if x['status'] == 'ongoing':
