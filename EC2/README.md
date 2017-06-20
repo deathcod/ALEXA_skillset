@@ -179,4 +179,5 @@ To build the requirements.txt you have use the following commmand. ``` pip freez
 Analytic vidya  
 https://datahack.analyticsvidhya.com/contest/all/
 
-Devspot
+Devpost
+https://devpost.com/hackathons

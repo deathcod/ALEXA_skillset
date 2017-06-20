@@ -97,27 +97,6 @@ def codechef(DEPLOY = False):
 	del x, tree, competiton_name_list, start_time_list, end_time_list, URL_list, length
 	return output
 	
-	'''
-	//*[@id="primary-content"]/div/div[3]/table/tbody/tr[1]/td[1]
-	//*[@id="primary-content"]/div/div[3]/table/tbody/tr[1]/td[2]/a
-	//*[@id="primary-content"]/div/div[3]/table/tbody/tr[1]/td[3]
-	//*[@id="primary-content"]/div/div[3]/table/tbody/tr[1]/td[4]
-	/html/body/center/center/table/tbody/tr/td/div/div/div/div/div[2]/div/div[3]/table/tbody/tr[1]/td[3] start time
-	/html/body/center/center/table/tbody/tr/td/div/div/div/div/div[2]/div/div[3]/table/tbody/tr[1]/td[4] end time
-
-
-	//*[@id="primary-content"]/div/div[3]/table/tbody/tr[2]/td[1]
-	//*[@id="primary-content"]/div/div[3]/table/tbody/tr[2]/td[2]/a
-	//*[@id="primary-content"]/div/div[3]/table/tbody/tr[2]/td[3]
-	//*[@id="primary-content"]/div/div[3]/table/tbody/tr[2]/td[4]
-
-	/html/body/center/center/table/tbody/tr/td/div/div/div/div/div[2]/div/div[4]/table/tbody/tr/td[3] future contest start time
-	/html/body/center/center/table/tbody/tr/td/div/div/div/div/div[2]/div/div[4]/table/tbody/tr/td[4] future contest end time
-
-	/html/body/center/center/table/tbody/tr/td/div/div/div/div/div[2]/div/div[3]/table/tbody/tr[3]/td[3]
-
-
-	'''
 
 #TODO currently this section is not working will have to review later
 def hackerrank(DEPLOY = False):
@@ -221,18 +200,6 @@ def venturesity(DEPLOY = False):
 
 	del tree, contest_name_list, URL_list, register_list, length
 	return output
-
-	'''
-	/html/body/section[2]/div/div[2]/div/div/div[1]/div/div[2]/div/div[1]/h4               	contest name
-	/html/body/section[2]/div/div[2]/div/div/div[1]/div/div[2]/div/div[1]/div[2]           	starting date
-	/html/body/section[2]/div/div[2]/div/div/div[1]/div/div[2]/div/div[2]/a                	register
-
-	/html/body/section[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/h4 				contest name
-	/html/body/section[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div[2]			starting date
-	/html/body/section[2]/div/div[2]/div/div/div[2]/div/div[1]/a                           	link
-	/html/body/section[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[2]/a 				register
-
-	'''
 	pass
 
 def analyticsvidhya(DEPLOY = False):
@@ -284,17 +251,143 @@ def analyticsvidhya(DEPLOY = False):
 		pass
 	del tree, contest_url_list, contest_name_list, contest_time_list, x
 	return output
-	'''
-	/html/body/div/div/div/div[2]/ul/li[1]/a/div[2]/h4 												contest url
-	/html/body/div[1]/div/div/div[2]/table/tbody/tr[1]/td[2]/div[1]/h4/a 					contest name
-	/html/body/div[1]/div/div/div[2]/table/tbody/tr[1]/td[2]/div[1]/p/i 					contest starting and ending date
-	
-	/html/body/div/div/div/div[2]/ul/li[2]/a/div[2]/h4
-
-	https://datahack.analyticsvidhya.com/contest/av-learnup-mumbai-application-of-analytics-in-bank/
-	'''
 	pass
 
+
+def devpost(DEPLOY = False):
+	x = ""
+	output = []
+	page_no = 1
+
+	contest_name_list = []
+	contest_url_list  = []
+	contest_time_list = []
+
+	while( page_no > 0):
+
+		if DEPLOY :
+			x = requests.get("https://devpost.com/hackathons?utf8=%E2%9C%93&search=&challenge_type=online&sort_by=Submission+Deadline&page=" + str(page_no)).text
+
+		else:
+			with open( CURRENT_DIR +'/testing_sites/input_devpost.html','r') as f:
+				x = f.read()
+				
+				#step to break the loop
+				page_no = -1;
+				pass
+			pass
+
+		tree = html.fromstring(x)
+		local_contest_name_list = tree.xpath('/html/body/section/div/div/div/div/div[1]/div/div/article/a/div[1]/section/div/h2/text()') #contest name
+		local_contest_url_list 	= tree.xpath('/html/body/section/div/div/div/div/div[1]/div/div/article/a/@href') #contest url
+		local_contest_time_list = tree.xpath('/html/body/section/div/div/div/div/div[1]/div/div/article/a/div[2]/section/div[2]/div/div[2]/time/@datetime') #contest time
+
+		if len(local_contest_name_list) == 0:
+			page_no = -1
+		else:
+			contest_name_list += local_contest_name_list
+			contest_url_list  += local_contest_url_list
+			contest_time_list += local_contest_time_list
+
+		
+		#incrementing the page number
+		page_no += 1
+
+		del local_contest_time_list, local_contest_name_list, local_contest_url_list
+		pass
+
+	length = len(contest_name_list)
+
+	for i in range(length):
+		
+		temp = {}
+
+		epoch = datetime.utcfromtimestamp(0)
+		start_time = datetime.now()
+		start_time -= epoch
+		start_time = int(start_time.total_seconds()+ i)
+		temp["start_time"] = start_time
+
+		epoch = datetime.utcfromtimestamp(0)
+		#time = 2017-06-24T21:00:00-04:00
+		end_time = datetime.strptime(contest_time_list[i][:contest_time_list[i].rfind('-')], "%Y-%m-%dT%H:%M:%S")
+		end_time -= epoch
+		end_time = int(end_time.total_seconds())
+		temp["end_time"] = end_time
+
+		
+		temp["competiton_name"] = contest_name_list[i]
+		temp["site_name"] 		= "Devpost"
+		temp["classification"]	= "h"
+		temp["URL"]				= contest_url_list[i]
+
+		output.append(temp)
+
+		del temp, start_time, end_time, epoch
+
+		pass
+	del tree, contest_url_list, contest_name_list, contest_time_list, x
+	return output
+
+	
+def techgig(DEPLOY = False):
+	x = ""
+	output = []
+	if DEPLOY :
+		x = requests.get("https://www.techgig.com/challenge").text
+	else:
+		with open( CURRENT_DIR +'/testing_sites/input_techgig.html','r') as f:
+			x = f.read()
+			pass
+		pass
+
+	tree = html.fromstring(x)
+	contest_name_list = tree.xpath('/html/body/div[2]/div[9]/div/div/div[1]/div/div/div/div/span/a/div[2]/h5/text()') #contest name
+	contest_url_list  = tree.xpath('/html/body/div[2]/div[9]/div/div/div[1]/div/div/div/div/span/a/@href')
+	contest_time_list = tree.xpath('/html/body/div[2]/div[9]/div/div/div[1]/div/div/div/div/span/a/div[2]/span[1]/text()')
+
+	length = len(contest_name_list)
+
+	for i in range(length):
+
+		temp = {}
+
+		start_time, end_time = contest_time_list[i].split('-')
+		
+		epoch = datetime.utcfromtimestamp(0)
+		start_time = datetime.strptime(start_time.strip() + " "+ str(datetime.now().year), "%d %b %Y")
+		start_time -= epoch
+		start_time = int(start_time.total_seconds())
+		temp["start_time"] = start_time
+
+		epoch = datetime.utcfromtimestamp(0)
+		end_time = datetime.strptime(end_time.strip() + " "+ str(datetime.now().year), "%d %b %Y")
+		end_time -= epoch
+		end_time = int(end_time.total_seconds())
+		temp["end_time"] = end_time
+		
+		temp["competiton_name"] = contest_name_list[i]
+		temp["site_name"] 		= "Techgig"
+		temp["classification"]	= "cp"
+		temp["URL"]				= contest_url_list[i]
+
+		output.append(temp)
+		del temp, start_time, end_time, epoch
+		pass
+
+	del tree, contest_url_list, contest_name_list, contest_time_list, x
+	return output
+
+	'''
+	/html/body/div[2]/div[9]/div/div/div[1]/div[1]/div/div[1]/div/span/a  				contest url
+	/html/body/div[2]/div[9]/div/div/div[1]/div[1]/div/div[1]/div/span/a/div[2]/h5  	contest name
+	/html/body/div[2]/div[9]/div/div/div[1]/div[1]/div/div[1]/div/span/a/div[2]/span[1]	contest date
+
+	/html/body/div[2]/div[9]/div/div/div[1]/div[1]/div/div[2]/div/span/a/div[2]/span[1]/i
+	/html/body/div[2]/div[9]/div/div/div[1]/div[2]/div/div/div/span/a/div[2]/span[1]
+	'''
+
+	pass
 #print (venturesity(DEPLOY = True))
 #print (venturesity())
 
@@ -306,3 +399,7 @@ def analyticsvidhya(DEPLOY = False):
 #print (codeforces())
 		
 #print (analyticsvidhya(DEPLOY = True))
+
+#print (devpost(DEPLOY = False))
+
+#print (techgig(DEPLOY = False))
