@@ -181,3 +181,6 @@ https://datahack.analyticsvidhya.com/contest/all/
 
 Devpost
 https://devpost.com/hackathons
+
+Techgig
+https://www.techgig.com/challenge
