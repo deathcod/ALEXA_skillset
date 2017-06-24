@@ -1,6 +1,6 @@
 {
   "session": {
-    "sessionId": "SessionId.b2968dcd-9ebc-47dd-aa57-293887027bc2",
+    "sessionId": "SessionId.b702ca89-05cf-4cbb-b283-67c8299fc3f5",
     "application": {
       "applicationId": "amzn1.ask.skill.d25af106-b6bb-4fc0-afc5-af0b37cdf05c"
     },
@@ -12,9 +12,9 @@
   },
   "request": {
     "type": "IntentRequest",
-    "requestId": "EdwRequestId.d22d7586-9927-4059-9ada-bbd3f1b3d5dc",
+    "requestId": "EdwRequestId.aaa67964-c835-4d37-bc82-45eeb0d88a19",
     "locale": "en-US",
-    "timestamp": "2017-06-23T15:24:44Z",
+    "timestamp": "2017-06-24T14:55:44Z",
     "intent": {
       "name": "GetCompetitions",
       "slots": {
@@ -23,8 +23,7 @@
           "value": "get"
         },
         "count": {
-          "name": "count",
-          "value": "3"
+          "name": "count"
         },
         "type": {
           "name": "type",
