@@ -13,6 +13,18 @@ from time_to_word import TimeInWords
 
 # --------------- Helpers that build all of the responses ----------------------
 
+#this function filters the text and makes it acceptable by the SSML.
+def SSML_filter(text):
+
+    #replace the key in the text with the value
+    replacement = {"&" : "and"}
+
+    for key,value in replace:
+        text = text.replace(key, value)
+
+    return text
+
+
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
     return {
         'outputSpeech': {
@@ -192,7 +204,7 @@ def get_competitions(intent, current_time):
             
             start_time = time.strftime('%d-%h ,%I:%M %p',time.gmtime(i["start_time"]))
             end_time = time.strftime('%d-%h ,%I:%M %p',time.gmtime(i["end_time"]))
-            competition_name = i["competiton_name"].replace(':', '')
+            competition_name = SSML_filter(i["competiton_name"])
 
             #reference process_query.json    
             speech_output += reply[1] %(competition_name        #competiton_name
@@ -204,7 +216,7 @@ def get_competitions(intent, current_time):
     else:
         for i in response:
             start_time = time.strftime('%d-%h ,%I:%M %p',time.gmtime(i["start_time"]))
-            competition_name = i["competiton_name"].replace(':', '')
+            competition_name = SSML_filter(i["competiton_name"])
 
             #reference process_query.json  
             speech_output += reply[0] %(competition_name        #competiton_name
