@@ -197,7 +197,7 @@ def get_competitions(intent, current_time):
             end_time = time.strftime('%d-%h ,%I:%M %p',time.gmtime(i["end_time"]))
 
             #reference process_query.json    
-            speech_output += SSML_filter(reply[1] %(i["competiton_name"]        #competiton_name
+            speech_output += SSML_filter(reply[1] %(i["competiton_name"].strip() #competiton_name
                                        ,start_time
                                        ,end_time
                                        ,i['site_name']              #site_name
@@ -208,7 +208,7 @@ def get_competitions(intent, current_time):
             start_time = time.strftime('%d-%h ,%I:%M %p',time.gmtime(i["start_time"]))
 
             #reference process_query.json  
-            speech_output += SSML_filter(reply[0] %(i["competiton_name"]      #competiton_name
+            speech_output += SSML_filter(reply[0] %(i["competiton_name"].strip()      #competiton_name
                                         ,start_time
                                         ,i['site_name']             #site_name
                                         )) + "\n"
