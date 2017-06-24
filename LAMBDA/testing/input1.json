@@ -14,7 +14,7 @@
     "type": "IntentRequest",
     "requestId": "EdwRequestId.d22d7586-9927-4059-9ada-bbd3f1b3d5dc",
     "locale": "en-US",
-    "timestamp": "2017-05-23T15:24:44Z",
+    "timestamp": "2017-06-23T15:24:44Z",
     "intent": {
       "name": "GetCompetitions",
       "slots": {
@@ -32,7 +32,7 @@
         },
         "status": {
           "name": "status",
-          "value": "ongoing"
+          "value": "upcoming"
         }
       }
     }
