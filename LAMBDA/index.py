@@ -19,7 +19,7 @@ def SSML_filter(text):
     #replace the key in the text with the value
     replacement = {"&" : "and"}
 
-    for key,value in replace:
+    for key,value in replacement.items():
         text = text.replace(key, value)
 
     return text
@@ -304,4 +304,4 @@ def testing_lambda():
     print (lambda_handler(x, " "))
     pass
 
-#testing_lambda()
+testing_lambda()
