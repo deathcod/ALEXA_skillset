@@ -9,7 +9,6 @@ from process_query import Fetch
 import json
 from datetime import datetime
 import time
-from time_to_word import TimeInWords
 import re
 
 # --------------- Helpers that build all of the responses ----------------------
