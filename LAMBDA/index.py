@@ -184,16 +184,7 @@ def get_competitions(intent, current_time):
 
     #reply structures
     #TODO add more structures in future.
-    reply = ['''
-                %s will start at %s,
-                in %s.com .
-            ''',
-            '''
-                %s has started since %s,
-                and will end at %s,
-                in %s.com .
-            '''
-            ]
+    reply = ["%s will start at %s, in %s.com .", "%s has started since %s, and will end at %s, in %s.com ." ]
 
     session_attributes = {}
     card_title = x['type'] + " contest"
@@ -224,10 +215,7 @@ def get_competitions(intent, current_time):
                                         ,i['site_name']             #site_name
                                         )
     
-    reprompt_text = '''
-                    I know I speak too fast,
-                    But you can follow me if you lower down your query count.
-                    '''
+    reprompt_text = "I know I speak too fast, but you can follow me if you lower down your query count."
 
     should_end_session = True
     return build_response(session_attributes, build_speechlet_response(
