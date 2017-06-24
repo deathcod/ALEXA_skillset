@@ -192,6 +192,7 @@ def get_competitions(intent, current_time):
             
             start_time = time.strftime('%d-%h ,%I:%M %p',time.gmtime(i["start_time"]))
             end_time = time.strftime('%d-%h ,%I:%M %p',time.gmtime(i["end_time"]))
+            i["competiton_name"] = i["competition_name"].replace(':', '')
 
             #reference process_query.json    
             speech_output += reply[1] %(i["competiton_name"]        #competiton_name
