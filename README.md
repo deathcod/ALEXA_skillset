@@ -29,7 +29,7 @@ ___
 * Add more functionality to the assistance
 	- set notification 
 	- store all the messages being done with each users. 
-	- store the userid or authentication token from each user so that it helps to recognize already visited users.
+	- store the userid or authentication token from each user so that it helps to recognize already visited users. [https://developer.amazon.com/blogs/alexa/post/30b0bb55-e516-4236-b1b8-5011e78188ed/makers-academy-s-alexa-series-how-to-authenticate-skill-users-with-oauth]
 
 * Future thought, make the assistant smart enough to segregate the competitions and retrieve the one that the user is more intrested in. It is classifing each of the competitions based upon the user's history . For the fresh user it will be based on the content which other users are mostly interested. 
 
