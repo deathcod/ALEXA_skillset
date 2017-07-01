@@ -188,7 +188,7 @@ Analytic vidya
 ~https://datahack.analyticsvidhya.com/contest/all/~
 
 Devpost
-https://devpost.com/hackathons
+~https://devpost.com/hackathons~
 
 Techgig
-https://www.techgig.com/challenge
+~https://www.techgig.com/challenge~
