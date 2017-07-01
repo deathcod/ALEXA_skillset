@@ -159,6 +159,14 @@ So then I realised that the problem is the setup. So I am building a serverless 
   
 4) was facing problem to create xpaths when we require to select two div positions, came to realise it can be done by div[position=3 or position=4]  
   
+5) I am now trying to implement concurrency in scrapping the websites. Now I had confusion on using asynio, multithreading, multi processing. Each has its pitfall. 
+
+* No multiprocessing because it will resource intensive and the problem statement is not such we have to make multiple processs as it is not CPU bound.  
+
+* No async because I feel the event loop will have to do lot of work. If I assume it is reactive(continous check if the result is available) or time bound(result is check after a time interval), then may be lot of callbacks, which can be ultimately create a network congestion so thinking from this theory thought to not proceed with async.
+
+* So finally proceeding with the multithreading making a ThreadPool. 
+
 ____
   
 

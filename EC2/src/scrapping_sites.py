@@ -378,16 +378,7 @@ def techgig(DEPLOY = False):
 	del tree, contest_url_list, contest_name_list, contest_time_list, x
 	return output
 
-	'''
-	/html/body/div[2]/div[9]/div/div/div[1]/div[1]/div/div[1]/div/span/a  				contest url
-	/html/body/div[2]/div[9]/div/div/div[1]/div[1]/div/div[1]/div/span/a/div[2]/h5  	contest name
-	/html/body/div[2]/div[9]/div/div/div[1]/div[1]/div/div[1]/div/span/a/div[2]/span[1]	contest date
-
-	/html/body/div[2]/div[9]/div/div/div[1]/div[1]/div/div[2]/div/span/a/div[2]/span[1]/i
-	/html/body/div[2]/div[9]/div/div/div[1]/div[2]/div/div/div/span/a/div[2]/span[1]
-	'''
-
-	pass
+	
 #print (venturesity(DEPLOY = True))
 #print (venturesity())
 
