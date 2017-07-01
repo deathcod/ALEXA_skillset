@@ -185,7 +185,7 @@ To build the requirements.txt you have use the following commmand. ``` pip freez
 ## Sites to scrap
 
 Analytic vidya  
-https://datahack.analyticsvidhya.com/contest/all/
+~https://datahack.analyticsvidhya.com/contest/all/~
 
 Devpost
 https://devpost.com/hackathons
