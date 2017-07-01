@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-import os, sys
 import logging
+import os
+import sys
 from concurrent import futures
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -12,9 +13,10 @@ from src import scrapping_sites
 
 logging.basicConfig(level=logging.INFO)
 
-#True is used when it has to be deployed otherwise it is False for local testing
 
-def multithreading(DEPLOY):
+# True is used when it has to be deployed otherwise it is False for local testing
+
+def multithreading(DEPLOY=False):
 	global database
 
 	logging.info("Concurrently scrape and transfer to DynamoDb")
