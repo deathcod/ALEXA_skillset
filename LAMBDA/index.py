@@ -215,7 +215,7 @@ def get_competitions(intent, current_time):
 
     reprompt_text = "I know I speak too fast, but you can follow me if you lower down your query count."
 
-    should_end_session = True
+    should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
@@ -284,11 +284,20 @@ def lambda_handler(event, context):
 
 def lambdaa():
     x = ""
+<<<<<<< HEAD
     with open(CURRENT_DIR + '/testing/input2.json', 'r') as f:
+=======
+    with open(CURRENT_DIR + '/testing/input1.json', 'r') as f:
+>>>>>>> 7a5263e59684d10d340e29835f69c8bfdebd32d5
         x = json.loads(f.read())
         pass
     print(lambda_handler(x, " "))
     pass
 
+<<<<<<< HEAD
 # comment it out while transfering to the LAMBDA
 # lambdaa()
+=======
+    # comment it out while transfering to the LAMBDA
+    # testing_lambda()
+>>>>>>> 7a5263e59684d10d340e29835f69c8bfdebd32d5
